@@ -1,0 +1,35 @@
+{
+  "name": "wm-tskit",
+  "version": "0.0.1",
+  "description": "TypeScript 通用工具函数仓库，能力积木集合",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": "./dist/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "typescript",
+    "utils",
+    "toolkit",
+    "helpers"
+  ],
+  "packageManager": "pnpm@11.5.1",
+  "license": "MIT",
+  "author": "",
+  "devDependencies": {
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0"
+  }
+}
