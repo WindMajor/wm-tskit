@@ -18,8 +18,20 @@ importers:
         specifier: ^4.1.8
         version: 4.1.8(vite@8.0.16(esbuild@0.27.7))
 
+  packages/wm-algorithm:
+    devDependencies:
+      tsup:
+        specifier: ^8.3.0
+        version: 8.5.1(postcss@8.5.15)(typescript@5.6.2)
+      typescript:
+        specifier: ^5.6.0
+        version: 5.6.2
+
   packages/wm-tskit:
     dependencies:
+      wm-algorithm:
+        specifier: workspace:*
+        version: link:../wm-algorithm
       wm-types:
         specifier: workspace:*
         version: link:../wm-types

@@ -18,8 +18,9 @@
   "keywords": ["typescript", "utils", "toolkit", "helpers", "types"],
   "license": "MIT",
   "dependencies": {
+    "wm-types": "workspace:*",
     "wm-utils": "workspace:*",
-    "wm-types": "workspace:*"
+    "wm-algorithm": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^8.3.0",
