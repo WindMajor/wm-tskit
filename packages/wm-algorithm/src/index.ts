@@ -2,3 +2,4 @@
  * wm-algorithm — LeetCode 算法题解集合
  */
 export { twoSum } from "./lc0001-two-sum";
+export { addTwoNumbers, ListNode } from "./lc0002-add-two-numbers";
