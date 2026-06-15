@@ -10,7 +10,9 @@
     },
     "./*": "./dist/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
@@ -18,9 +20,14 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "keywords": ["typescript", "algorithm", "data-structure"],
+  "keywords": [
+    "typescript",
+    "algorithm",
+    "data-structure"
+  ],
   "license": "MIT",
   "devDependencies": {
+    "glob": "^13.0.6",
     "tsup": "^8.3.0",
     "typescript": "^5.6.0"
   }

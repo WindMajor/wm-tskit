@@ -1,5 +1,4 @@
 /**
- * wm-algorithm — 常用算法函数集合
+ * wm-algorithm — LeetCode 算法题解集合
  */
-
-// TODO: 添加算法函数
+export { twoSum } from "./lc0001-two-sum";
