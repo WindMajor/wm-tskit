@@ -15,6 +15,40 @@ importers:
         specifier: ^5.6.0
         version: 5.6.2
 
+  packages/wm-tskit:
+    dependencies:
+      wm-types:
+        specifier: workspace:*
+        version: link:../wm-types
+      wm-utils:
+        specifier: workspace:*
+        version: link:../wm-utils
+    devDependencies:
+      tsup:
+        specifier: ^8.3.0
+        version: 8.5.1(typescript@5.6.2)
+      typescript:
+        specifier: ^5.6.0
+        version: 5.6.2
+
+  packages/wm-types:
+    devDependencies:
+      tsup:
+        specifier: ^8.3.0
+        version: 8.5.1(typescript@5.6.2)
+      typescript:
+        specifier: ^5.6.0
+        version: 5.6.2
+
+  packages/wm-utils:
+    devDependencies:
+      tsup:
+        specifier: ^8.3.0
+        version: 8.5.1(typescript@5.6.2)
+      typescript:
+        specifier: ^5.6.0
+        version: 5.6.2
+
 packages:
 
   '@esbuild/aix-ppc64@0.27.7':

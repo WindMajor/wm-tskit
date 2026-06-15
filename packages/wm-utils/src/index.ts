@@ -1,6 +1,3 @@
-// Types
-export type * from "./types";
-
 // Array utils
 export {
   chunk,

@@ -8,7 +8,6 @@ export default defineConfig({
     string: "src/string.ts",
     function: "src/function.ts",
     is: "src/is.ts",
-    types: "src/types.ts",
   },
   format: ["esm"],
   dts: true,
