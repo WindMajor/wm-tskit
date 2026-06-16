@@ -64,7 +64,7 @@ export function twoSum_2_safe(nums: number[], target: number): number[] {
 }
 
 /*
-哈希两次遍历。遇到重复数字，会覆盖，只保留最后一个出现的，但不影响正确性
+普通对象哈希表，两次遍历。遇到重复数字，会覆盖，只保留最后一个出现的，但不影响正确性
 时间复杂度：O(n)
 空间复杂度：O(n)
  */
