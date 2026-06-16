@@ -3,11 +3,14 @@
  *
  * 给定两个大小分别为 m 和 n 的正序数组 nums1 和 nums2，找出并返回这两个正序数组的中位数。
  *
- * - 时间复杂度：O(log(min(m, n)))  二分查找较短的数组
- * - 空间复杂度：O(1)
- *
  * @see https://leetcode.cn/problems/median-of-two-sorted-arrays/
  */
+
+/*
+二分查找较短的数组
+时间复杂度：O(log(min(m, n)))
+空间复杂度：O(1)
+*/
 export function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
   // 保证 nums1 始终是较短的数组，以减少二分查找次数
   if (nums1.length > nums2.length) {
@@ -51,12 +54,12 @@ export function findMedianSortedArrays(nums1: number[], nums2: number[]): number
 }
 
 /*
-先合并数组再取中位数
+暴力解法：先合并数组再取中位数，用于对比
 时间复杂度: O((m+n) log(m+n))
  - 合并数组: O(m+n)
  - 排序: O((m+n) log(m+n)) ← 主要开销
  - 取值: O(1)
- */
+*/
 function findMedianSortedArrays_2(nums1: number[], nums2: number[]): number {
   const merged = [...nums1, ...nums2].sort((a, b) => a - b);
   const mid = Math.floor(merged.length / 2);
@@ -71,7 +74,7 @@ function findMedianSortedArrays_2(nums1: number[], nums2: number[]): number {
 /*
 双指针归并(优化版)
 时间复杂度: O(m+n) - 只需要遍历到中位数位置 空间复杂度: O(1) - 只用几个变量
- */
+*/
 function findMedianSortedArrays_3(nums1: number[], nums2: number[]): number {
   const m = nums1.length;
   const n = nums2.length;

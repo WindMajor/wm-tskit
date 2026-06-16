@@ -5,9 +5,6 @@
  * 每位数字都是按照逆序方式存储的，每个节点只能存储一位数字。
  * 将两个数相加，并以相同形式返回一个表示和的链表。
  *
- * - 时间复杂度：O(max(m, n))
- * - 空间复杂度：O(max(m, n))
- *
  * @see https://leetcode.cn/problems/add-two-numbers/
  */
 
@@ -20,6 +17,11 @@ export class ListNode {
   }
 }
 
+/*
+模拟进位加法
+时间复杂度：O(max(m, n))
+空间复杂度：O(max(m, n))
+*/
 export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
   const dummy = new ListNode();
   let curr = dummy;
