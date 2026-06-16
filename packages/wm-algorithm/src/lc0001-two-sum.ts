@@ -15,7 +15,8 @@
 3ms
  */
 export function twoSum(nums: number[], target: number): number[] {
-  const map: Record<number, number> = {};
+  // const map: Record<number, number> = {}; // 有原型链污染风险，toString" in obj; 得到true
+  const map: Record<number, number> = Object.create(null); // 无原型链污染风险 "toString" in obj; 得到false
 
   for (let i = 0, len = nums.length; i < len; i++) {
     const diff = target - nums[i];
@@ -46,19 +47,37 @@ export function twoSum_2(nums: number[], target: number): number[] {
   return [];
 }
 
+export function twoSum_2_safe(nums: number[], target: number): number[] {
+  const map = new Map<number, number>();
+
+  for (let i = 0, len = nums.length; i < len; i++) {
+    const diff = target - nums[i];
+    const j = map.get(diff);
+    // if (j !== undefined) {  // 直接值检查，进行类型守卫
+    if (typeof j === 'number') {
+      // 主动类型守卫
+      return [j, i];
+    }
+    map.set(nums[i], i);
+  }
+  return [];
+}
+
 /*
 哈希两次遍历。遇到重复数字，会覆盖，只保留最后一个出现的，但不影响正确性
 时间复杂度：O(n)
 空间复杂度：O(n)
  */
 function twoSum_3(nums: number[], target: number): number[] {
-  const map: Record<number, number> = {};
+  const map: Record<number, number> = Object.create(null);
   for (let i = 0; i < nums.length; i++) {
     map[nums[i]] = i;
   }
   for (let i = 0; i < nums.length; i++) {
-    const j = map[target - nums[i]];
-    if (j !== undefined && j !== i) return [i, j];
+    const j = map[target - nums[i]]; // 如果不存在，得到的是 undefined
+    if (j !== i) {
+      return [i, j];
+    }
   }
   return [];
 }
@@ -70,16 +89,49 @@ function twoSum_3(nums: number[], target: number): number[] {
  */
 function twoSum_4(nums: number[], target: number): number[] {
   // const indexed: number[][] = nums.map((v, i) => [v, i]); // 二维数组类型，v是值，i是索引，变成 [[v1, 0], [v2, 1], ...]
-  const indexed: [number, number][] = nums.map((v, i) => [v, i]); // 二维数组类型，指定内存数组是2个数字
+  const idxArr: [number, number][] = nums.map((v, i) => [v, i]); // 二维数组类型，指定内层数组是2个数字
 
-  indexed.sort((a, b) => a[0] - b[0]);
+  idxArr.sort((a, b) => a[0] - b[0]);
 
   let l = 0,
-    r = indexed.length - 1;
+    r = idxArr.length - 1;
   while (l < r) {
-    const sum = indexed[l][0] + indexed[r][0];
-    if (sum === target) return [indexed[l][1], indexed[r][1]];
+    const sum = idxArr[l][0] + idxArr[r][0];
+    if (sum === target) return [idxArr[l][1], idxArr[r][1]];
     sum < target ? l++ : r--;
+  }
+  return [];
+}
+
+/*
+排序 + 二分查找
+时间复杂度：O(n log n)
+空间复杂度：O(n)
+ */
+function twoSum_5(nums: number[], target: number): number[] {
+  // 创建带索引的数组并排序
+  const idxArr: [number, number][] = nums.map((v, i) => [v, i]);
+  idxArr.sort((a, b) => a[0] - b[0]);
+
+  // 对每个元素，用二分查找寻找 complement
+  for (let i = 0; i < idxArr.length; i++) {
+    const diff = target - idxArr[i][0];
+    let l = i + 1;
+    let r = idxArr.length - 1;
+
+    // 二分查找
+    while (l <= r) {
+      const mid = Math.floor((l + r) / 2);
+      const midValue = idxArr[mid][0];
+
+      if (midValue === diff) {
+        return [idxArr[i][1], idxArr[mid][1]];
+      } else if (midValue < diff) {
+        l = mid + 1;
+      } else {
+        r = mid - 1;
+      }
+    }
   }
   return [];
 }
@@ -89,7 +141,7 @@ function twoSum_4(nums: number[], target: number): number[] {
 时间复杂度：O(n²)
 空间复杂度：O(1)
  */
-function twoSum_5(nums: number[], target: number): number[] {
+function twoSum_6(nums: number[], target: number): number[] {
   for (let i = 0; i < nums.length; i++) {
     for (let j = i + 1; j < nums.length; j++) {
       if (nums[i] + nums[j] === target) return [i, j];
